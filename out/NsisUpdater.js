@@ -29,9 +29,10 @@ class NsisUpdater extends BaseUpdater_1.BaseUpdater {
             task: async (destinationFile, downloadOptions, packageFile, removeTempDirIfAny) => {
                 const packageInfo = fileInfo.packageInfo;
                 const isWebInstaller = packageInfo != null && packageFile != null;
-                if (isWebInstaller || (await this.differentialDownloadInstaller(fileInfo, downloadUpdateOptions, destinationFile, provider))) {
-                    await this.httpExecutor.download(fileInfo.url, destinationFile, downloadOptions);
-                }
+                // if (isWebInstaller || (await this.differentialDownloadInstaller(fileInfo, downloadUpdateOptions, destinationFile, provider))) {
+                //     await this.httpExecutor.download(fileInfo.url, destinationFile, downloadOptions);
+                // }
+                await this.httpExecutor.download(fileInfo.url, destinationFile, downloadOptions);
                 const signatureVerificationStatus = await this.verifySignature(destinationFile);
                 if (signatureVerificationStatus != null) {
                     await removeTempDirIfAny();
